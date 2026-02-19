@@ -1,0 +1,38 @@
+import { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import "./index.css";
+import Spinner from "./components/Spinner";
+import NotFound from "./components/NotFound";
+import Header from "./pages/header/Header";
+
+function App() {
+ const isLoading =false;
+
+  return (
+    <>
+      <>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <Header />
+
+          {/* {isLoggedIn && <UserOption user={user} />} */}
+
+          <Suspense fallback={<Spinner />}>
+            <Routes>
+              <Route index element={<Home />} />
+              
+              {/* <Route path="/product/:id" element={<ProductsDetails />} />      */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </>
+      )}
+    </>
+    </>
+  )
+}
+
+export default App
