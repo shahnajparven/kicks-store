@@ -44,7 +44,7 @@ const Card = ({ product }) => {
               size={18}
               className={`${
                 index < rating
-                  ? "fill-yellow-400 text-yellow-400"
+                  ? "fill-[#FFA52F] text-yellow-400"
                   : "text-gray-300"
               }`}
             />

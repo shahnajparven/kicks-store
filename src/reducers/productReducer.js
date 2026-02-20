@@ -7,48 +7,13 @@ import {
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
 
+  ALL_CATEGORIES_REQUEST ,
+   ALL_CATEGORIES_SUCCESS ,
+   ALL_CATEGORIES_FAIL,
+
   CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-// export const productsReducer = (state = { products: [] }, action) => {
-
-//   switch (action.type) {
-//     case ALL_PRODUCT_REQUEST:
-   
-//       return {
-//         loading: true,
-//         products: [],
-//       };
-//     case ALL_PRODUCT_SUCCESS:
-
-//       return {
-//         loading: false,
-//         products: action.payload.products,
-//         productsCount: action.payload.productsCount,
-//         resultPerPage: action.payload.resultPerPage,
-//       };
-    
-//       return {
-//         loading: false,
-//         products: action.payload,
-//       };
-
-//     case ALL_PRODUCT_FAIL:
-  
-//       return {
-//         loading: false,
-//         error: action.payload,
-//       };
-//     case CLEAR_ERRORS:
-
-//       return {
-//         ...state,
-//         error: null,
-//       };
-//     default:
-//       return state;
-//   }
-// };
 
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -62,7 +27,7 @@ export const productsReducer = (state = { products: [] }, action) => {
     case ALL_PRODUCT_SUCCESS:
       return {
         loading: false,
-        products: action.payload, // ✅ FIXED
+        products: action.payload, 
       };
 
     case ALL_PRODUCT_FAIL:
@@ -81,10 +46,6 @@ export const productsReducer = (state = { products: [] }, action) => {
       return state;
   }
 };
-
-
-
-
 
 export const productDetailsReducer = (state = { product: {} }, action) => {
   switch (action.type) {
@@ -109,6 +70,38 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         ...state,
         error: null,
       };
+    default:
+      return state;
+  }
+};
+
+
+export const categoriesReducer = (state = { categories: [] }, action) => {
+  switch (action.type) {
+    case ALL_CATEGORIES_REQUEST:
+      return {
+        loading: true,
+        categories: [],
+      };
+
+    case ALL_CATEGORIES_SUCCESS:
+      return {
+        loading: false,
+        categories: action.payload, 
+      };
+
+    case ALL_CATEGORIES_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
     default:
       return state;
   }

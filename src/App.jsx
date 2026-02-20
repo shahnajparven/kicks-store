@@ -5,6 +5,7 @@ import "./index.css";
 import Spinner from "./components/Spinner";
 import NotFound from "./components/NotFound";
 import Header from "./pages/header/Header";
+import ProductsDetails from "./pages/products/ProductsDetails";
 
 function App() {
  const isLoading =false;
@@ -24,7 +25,7 @@ function App() {
             <Routes>
               <Route index element={<Home />} />
               
-              {/* <Route path="/product/:id" element={<ProductsDetails />} />      */}
+              <Route path="/product/:id" element={<ProductsDetails />} />     
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

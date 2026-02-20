@@ -2,14 +2,14 @@
 import Banner from "./banner/Banner";
 import CategorySlider from "./categories/Categories";
 import Contact from "./contact/contact";
-import ProductsCard from "./products/ProductsCard";
+import Products from "./products/Products";
 import Review from "./reviews/Review";
 
 const Home = () => {
   return (
     <div>
       <Banner />
-      <ProductsCard />
+      <Products />
       <CategorySlider/>
       <Review/>
       <Contact/>
