@@ -1,58 +1,62 @@
 import Card from "./Card";
+import review1 from "../../assets/review1.png";
+import review2 from "../../assets/review2.png";
+import review3 from "../../assets/review3.png";
+
+import profile1 from "../../assets/profile1.jpg";
+import profile2 from "../../assets/profile2.png";
+import profile3 from "../../assets/profile3.png";
 
 const products = [
   {
     id: 1,
-    title: "Make Up Essentials",
-    passage1: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    passage2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    image: [
-      { url: "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-      { url: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6" },
-      { url: "https://images.unsplash.com/photo-1492724441997-5dc865305da7" }
-    ]
+    title: "Good Quality",
+    description: "I highly recommend shopping from kicks",
+    image: review1,
+    profile: profile1,
   },
   {
     id: 2,
-    title: "Luxury Lipsticks",
-    passage1: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    passage2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    image: [
-      { url: "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-      { url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" },
-      { url: "https://images.unsplash.com/photo-1492724441997-5dc865305da7" }
-    ]
+    title: "Good Quality",
+    description: "I highly recommend shopping from kicks",
+    image: review2,
+      profile: profile2,
   },
   {
     id: 3,
-    title: "Face Care Kit",
-    passage1: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    passage2: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    image: [
-      { url: "https://images.unsplash.com/photo-1492724441997-5dc865305da7" },
-      { url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" },
-      { url: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6" }
-    ]
+    title: "Good Quality",
+    description: "I highly recommend shopping from kicks",
+    image: review3,
+      profile: profile3,
   },
-  
-  
 ];
 
 
 export default function Review() {
   const loading= false;
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className=" px-4 md:px-8 py-10">
   
-<h2 className="text-[#232321] text-[24px] md:text-[74px] font-bold py-4">
-          REVIEWS
+
+ <div className='flex justify-between items-center'>
+       <h2 className="text-[#232321] text-[24px] md:text-[74px] font-bold py-4 md:uppercase">
+          Reviews
         </h2>
- 
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 py-4">
-  {products.map((product) => (
-    <Card key={product.id} product={product} />
-  ))}
+        <button className="text-[14px] rounded-lg bg-[#4A69E2] text-white px-2 md:px-6 py-2 md:py-3 hover:bg-[#232321] hover:text-white transition">
+              SEE ALL
+            </button>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
+  {products.map((product, index) => (
+          <div
+            key={product.id}
+            className={index === 0 ? "block" : "hidden md:block"}
+          >
+            <Card product={product} />
+          </div>
+        ))}
 </div>
+
  
 </div>
 

@@ -109,7 +109,7 @@ const Cards = ({ product }) => {
         rounded-xl 
         bg-[#232321] 
         text-white 
-        px-4 md:px-6 
+        px-2 md:px-6 
         py-2 md:py-3 
         transition 
         hover:bg-[#4A69E2]
