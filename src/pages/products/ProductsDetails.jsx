@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails } from "../../actions/productAction";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductsCard from "./ProductsCard";
 import { CiHeart } from "react-icons/ci";
 import Slider from "react-slick";
@@ -27,6 +27,7 @@ export default function ProductDetails() {
   const [mainImage, setMainImage] = useState("");
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate =useNavigate();
 
   const { product, loading, error } = useSelector(
     (state) => state.productDetails,
@@ -53,6 +54,9 @@ export default function ProductDetails() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+const handleOpen = () => {
+  navigate("/cart");
+};
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -162,9 +166,11 @@ export default function ProductDetails() {
           {/* Buttons */}
           <div className=" flex flex-col not-first-of-type:mt-8 ">
             <div className="flex gap-2 py-2">
-              <button className="flex-1 bg-black text-white py-3 rounded-lg hover:opacity-90">
+                
+              <button onClick={handleOpen} className="flex-1 bg-black text-white py-3 rounded-lg hover:opacity-90">
                 Add to Cart
               </button>
+             
               <div className="bg-black text-white py-3 rounded-lg hover:opacity-90 px-4">
                 <CiHeart />
               </div>

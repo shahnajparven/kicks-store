@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoMdPerson, IoMdSearch, IoMdMenu, IoMdClose } from "react-icons/io";
 import logo from "../../assets/logo.png";
 import drop from "../../assets/NewDrops.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -70,10 +71,11 @@ const Header = () => {
         </div>
 
         {/* Logo */}
+        <Link to='/'>
         <div className="flex justify-center">
           <img src={logo} alt="logo" className="h-5 m:h-6 lg:h-8 w-32 object-contain" />
         </div>
-
+</Link>
         {/* Right Section */}
         <div className="flex items-center gap-4 md:gap-8">
           <IoMdSearch size={25} className="hidden md:flex cursor-pointer hover:text-blue-500" />

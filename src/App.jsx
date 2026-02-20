@@ -6,6 +6,9 @@ import Spinner from "./components/Spinner";
 import NotFound from "./components/NotFound";
 import Header from "./pages/header/Header";
 import ProductsDetails from "./pages/products/ProductsDetails";
+import Contact from "./pages/contact/contact";
+import ScrollToTop from "./components/ScrollToTop";
+import CartPage from "./pages/cart/Cart";
 
 function App() {
  const isLoading =false;
@@ -20,15 +23,19 @@ function App() {
           <Header />
 
           {/* {isLoggedIn && <UserOption user={user} />} */}
-
+<ScrollToTop />
           <Suspense fallback={<Spinner />}>
+
             <Routes>
               <Route index element={<Home />} />
               
               <Route path="/product/:id" element={<ProductsDetails />} />     
+              <Route path="/cart" element={<CartPage />} /> 
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+               <Contact/>
         </>
       )}
     </>
