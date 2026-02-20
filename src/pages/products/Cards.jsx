@@ -1,43 +1,126 @@
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom";
 
+// const Cards = ({ product }) => {
+//   const isDiscount = false;
+//   return (
+//     <Link to={`/product/${product.id}`} className="group block">
+//       <div className=" rounded-3xl overflow-hidden">
+//         {/* 🔵 Curved New Badge */}
+
+//         {/* Product Image */}
+//         <div className=" rounded-[24px] overflow-hidden bg-white p-1.5 group-hover:scale-105 transition duration-300">
+//           <div className="relative">
+//             <img
+//               src={product.images?.[0]}
+//               alt={product.title}
+//               className="w-[171px] md:w-[302px] h-[180px] md:h-[334px] object-cover rounded-3xl "
+//             />
+//             <div className="absolute top-0 left-0">
+//               {/* <div className="bg-[#4A69E2] text-white text-[12px] px-4 py-3
+//                           rounded-br-[34px] rounded-tl-[20px] font-medium">
+//             New
+//           </div> */}
+//               <div
+//                 className={`
+//      text-[12px] px-4 py-3
+//     rounded-br-[34px] rounded-tl-[20px]
+//     font-medium
+//     ${isDiscount ? "bg-yellow-400 text-black" : "bg-[#4A69E2] text-white"}
+//   `}
+//               >
+//                 {isDiscount ? "10% Off" : "New"}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Title */}
+//       <div className="h-[100px] py-4 text-lg font-medium text-[#232321] md:uppercase">
+//         {product.title}
+//       </div>
+
+//       {/* Button */}
+//       <button className="w-full text-sm rounded-xl bg-[#232321] text-white px-2 md:px-6 py-2 md:py-3 hover:bg-[#4A69E2] transition">
+//         View Product - <span className="text-[#FFA52F]">${product.price}</span>
+//       </button>
+//     </Link>
+//   );
+// };
+
+// export default Cards;
+import { Link } from "react-router-dom";
 
 const Cards = ({ product }) => {
+  const isDiscount = product?.isDiscount || false;
+
   return (
-<Link to={`/product/${product.id}`} className="group block">
-      <div className=" rounded-3xl overflow-hidden">
-
-        {/* 🔵 Curved New Badge */}
+    <Link to={`/product/${product.id}`} className="group block w-full">
+      <div className="rounded-3xl overflow-hidden">
         
-
         {/* Product Image */}
-        <div className=" rounded-[24px] overflow-hidden bg-white p-2 group-hover:scale-105 transition duration-300">
-         <div className="relative">
-          <img
-            src={product.images?.[0]}
-            alt={product.title}
-            className="w-[302px] h-[334px] object-cover rounded-3xl "
-          />
-          <div className="absolute top-0 left-0">
-          <div className="bg-[#4A69E2] text-white text-[12px] px-4 py-3
-                          rounded-br-[34px] rounded-tl-[20px] font-medium">
-            New
+        <div className="rounded-[24px] overflow-hidden bg-white p-1.5 transition duration-300 group-hover:scale-[1.02]">
+          <div className="relative">
+            
+            {/* Image */}
+            <img
+              src={product.images?.[0]}
+              alt={product.title}
+              className="
+                w-full 
+                h-[180px] 
+                sm:h-[220px] 
+                md:h-[334px] 
+                object-cover 
+                rounded-3xl
+              "
+            />
+
+            {/* Badge */}
+            <div className="absolute top-0 left-0">
+              <div
+                className={`
+                  text-[12px] 
+                  px-3 sm:px-4 
+                  py-2 sm:py-3
+                  rounded-br-[34px] 
+                  rounded-tl-[20px]
+                  font-medium
+                  ${isDiscount ? "bg-yellow-400 text-black" : "bg-[#4A69E2] text-white"}
+                `}
+              >
+                {isDiscount ? "10% OFF" : "New"}
+              </div>
+            </div>
+
           </div>
-        </div>
-        </div>
         </div>
       </div>
 
       {/* Title */}
-      <div className="h-[100px] py-4 text-lg font-medium text-[#232321]">
+      <div className="py-3 md:py-4 text-base md:text-lg font-medium text-[#232321] md:uppercase min-h-[60px] md:min-h-[100px]">
         {product.title}
       </div>
 
       {/* Button */}
-      <button className="w-full text-sm rounded-xl bg-[#232321] text-white px-6 py-3 hover:bg-[#4A69E2] transition">
-        View Product - <span className="text-[#FFA52F]">${product.price}</span>
+      <button className="
+        w-full 
+        text-sm 
+        rounded-xl 
+        bg-[#232321] 
+        text-white 
+        px-4 md:px-6 
+        py-2 md:py-3 
+        transition 
+        hover:bg-[#4A69E2]
+      ">
+        View Product -{" "}
+        <span className="text-[#FFA52F]">
+          ${product.price}
+        </span>
       </button>
     </Link>
-  )
-}
+  );
+};
 
-export default Cards
+export default Cards;

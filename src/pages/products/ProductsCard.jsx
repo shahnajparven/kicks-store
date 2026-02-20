@@ -64,16 +64,16 @@ const ProductsCard = () => {
 
   console.log(products)
   return (
-    <div className='p-8'>
+    <div className='p-4 md:p-8'>
 <div className='flex justify-between items-end'>
-        <h3 className='text-[75px] font-bold w-[50%] text-[#232321]'>DON'T MISS OUT NEW DROPS</h3>
-        <button className="text-[14px] rounded-lg bg-[#4A69E2] text-white px-6 py-2 lg:py-3 hover:bg-[#232321] hover:text-white transition">
+        <h3 className='text-[24px] md:text-[75px] font-bold text-[#232321] md:uppercase'>Don't miss out<br/> new drops</h3>
+        <button className="text-[14px] rounded-lg bg-[#4A69E2] text-white px-4 md:px-6 py-3 md:py-3 hover:bg-[#232321] hover:text-white transition">
               SHOP NEW DROPS
             </button>
     </div>
      <div className="py-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
  {/* {products && products.map((product) => ( */}
- {products?.slice(6, 10).map((product) => (
+ {products?.slice(0, 4).map((product) => (
   <Cards key={product._id} product={product} />
 ))}
 
