@@ -4,35 +4,7 @@ import { useRef } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function CartPage() {
-  const sliderRef = useRef(null);
-
-
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-     arrows: false, 
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 2 },
-      },
-      {
-       breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesPerRow: 2,
-          rows: 2,
-        },
-      },
-    ],
-  };
+  const swiperRef = useRef(null);
 
   return (
     <div className="py-10">
@@ -140,13 +112,13 @@ export default function CartPage() {
             </h2>
             <div className="flex gap-3">
               <button
-                onClick={() => sliderRef.current?.slickPrev()}
+                  onClick={() => swiperRef.current?.slidePrev()}
                 className="bg-white hover:bg-[#b1b1ac] hover:text-white text-black w-8 h-8 rounded-lg flex items-center justify-center"
               >
                 <IoIosArrowBack size={15} />
               </button>
               <button
-                onClick={() => sliderRef.current?.slickNext()}
+                onClick={() => swiperRef.current?.slideNext()}
                 className="bg-white text-black hover:bg-[#b1b1ac] hover:text-white w-8 h-8 rounded-lg flex items-center justify-center"
               >
                 <IoIosArrowForward size={15} />
@@ -154,8 +126,7 @@ export default function CartPage() {
             </div>
           </div>
 
-          <ProductsCard ref={sliderRef}
-  sliderSettings={sliderSettings} />
+         <ProductsCard swiperRef={swiperRef}/>
         </div>
       </div>
     </div>

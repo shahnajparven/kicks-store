@@ -1,7 +1,8 @@
+import { useRef } from 'react';
 import ProductsCard from './ProductsCard'
 
 const Products = () => {
-      
+      const swiperRef = useRef(null);
   return (
     <div className='p-4 md:p-8'>
 <div className='flex justify-between items-end'>
@@ -11,7 +12,7 @@ const Products = () => {
             </button>
             
     </div>
-<ProductsCard/>
+<ProductsCard swiperRef={swiperRef} />
 </div>
 
   )

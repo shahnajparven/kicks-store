@@ -10,41 +10,34 @@ import Contact from "./pages/contact/contact";
 import ScrollToTop from "./components/ScrollToTop";
 import CartPage from "./pages/cart/Cart";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-
 function App() {
- const isLoading =false;
+  const isLoading = false;
 
   return (
     <>
       <>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <Header />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <Header />
+            <ScrollToTop />
+            <Suspense fallback={<Spinner />}>
+              <Routes>
+                <Route index element={<Home />} />
 
-          {/* {isLoggedIn && <UserOption user={user} />} */}
-<ScrollToTop />
-          <Suspense fallback={<Spinner />}>
+                <Route path="/product/:id" element={<ProductsDetails />} />
+                <Route path="/cart" element={<CartPage />} />
 
-            <Routes>
-              <Route index element={<Home />} />
-              
-              <Route path="/product/:id" element={<ProductsDetails />} />     
-              <Route path="/cart" element={<CartPage />} /> 
-              
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-               <Contact/>
-        </>
-      )}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+            <Contact />
+          </>
+        )}
+      </>
     </>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

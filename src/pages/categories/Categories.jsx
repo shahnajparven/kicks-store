@@ -26,7 +26,7 @@ const CategorySlider = () => {
     dispatch(getCategories());
   }, [dispatch, error]);
 
-//   console.log(categories);
+  console.log(categories);
 
   return (
     <div className="w-full pl-4 md:pl-8 pt-12 bg-[#232321]">
@@ -53,32 +53,23 @@ const CategorySlider = () => {
       </div>
 
       <div className="bg-white rounded-tl-[34px]">
-        <Swiper
-          modules={[Navigation]}
-          spaceBetween={0}
-          slidesPerView={1}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onSwiper={(swiper) => {
-            // Delay initialization to fix custom buttons
-            setTimeout(() => {
-              if (swiper.params.navigation) {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
-                swiper.navigation.destroy();
-                swiper.navigation.init();
-                swiper.navigation.update();
-              }
-            });
-          }}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-            },
-          }}
-        >
+       <Swiper
+  modules={[Navigation]}
+  spaceBetween={0}
+  slidesPerView={1}
+  navigation={{
+    prevEl: prevRef.current,
+    nextEl: nextRef.current,
+  }}
+  onBeforeInit={(swiper) => {
+    swiper.params.navigation.prevEl = prevRef.current;
+    swiper.params.navigation.nextEl = nextRef.current;
+  }}
+  breakpoints={{
+    768: { slidesPerView: 2 },
+  }}
+>
+
           {categories.map((cat) => (
             <SwiperSlide key={cat.id}>
               {({ isActive }) => (

@@ -22,7 +22,7 @@ const Banner = () => {
 
 
 <div
-    className="absolute -left-15  md:-left-22.5 top-22 md:top-50 w-[157px] md:w-[237px] 
+    className="absolute -left-15  md:-left-23.5 top-22 md:top-50 w-[157px] md:w-[237px] 
                p-2 md:p-4 
                rounded-tr-[16px] rounded-tl-[16px] 
                bg-[#232321] text-white flex flex-col gap-2.5 
