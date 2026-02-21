@@ -10,6 +10,10 @@ import Contact from "./pages/contact/contact";
 import ScrollToTop from "./components/ScrollToTop";
 import CartPage from "./pages/cart/Cart";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
 function App() {
  const isLoading =false;
 

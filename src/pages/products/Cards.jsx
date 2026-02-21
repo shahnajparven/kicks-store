@@ -1,11 +1,14 @@
 
 import { Link } from "react-router-dom";
 
+
 const Cards = ({ product }) => {
   const isDiscount = product?.isDiscount || false;
 
+
+
   return (
-    <Link to={`/product/${product.id}`} className="group block w-full">
+   <>
       <div className="rounded-3xl overflow-hidden">
         
         {/* Product Image */}
@@ -14,7 +17,7 @@ const Cards = ({ product }) => {
             
             {/* Image */}
             <img
-              src={product.images?.[0]}
+              src={product.images?.[0] || undefined}
               alt={product.title}
               className="
                 w-full 
@@ -53,6 +56,7 @@ const Cards = ({ product }) => {
       </div>
 
       {/* Button */}
+       <Link to={`/product/${product.id}`} className="group block w-full">
       <button className="
         w-full 
         text-sm 
@@ -70,6 +74,7 @@ const Cards = ({ product }) => {
         </span>
       </button>
     </Link>
+    </>
   );
 };
 

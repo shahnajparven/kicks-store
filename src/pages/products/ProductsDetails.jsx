@@ -4,7 +4,8 @@ import { getProductDetails } from "../../actions/productAction";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductsCard from "./ProductsCard";
 import { CiHeart } from "react-icons/ci";
-import Slider from "react-slick";
+import { useRef } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const sizes = [
   "38",
@@ -24,39 +25,58 @@ const sizes = [
 
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState("");
-  const [mainImage, setMainImage] = useState("");
+  const [mainImage, setMainImage] = useState(null);
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate =useNavigate();
+  const sliderRef = useRef(null);
 
   const { product, loading, error } = useSelector(
     (state) => state.productDetails,
   );
 
+ // Fetch product
   useEffect(() => {
     if (id) dispatch(getProductDetails(id));
-  }, [dispatch, id]);
+  }, [dispatch, id])
 
+ // Update selectedSize and mainImage once product is loaded
   useEffect(() => {
     if (product?.sizes?.length) setSelectedSize(product.sizes[0]);
     if (product?.images?.length) setMainImage(product.images[0]);
   }, [product]);
 
+  // Only now can we conditionally render
   if (loading) return <div className="text-center py-10">Loading...</div>;
-  if (error)
-    return <div className="text-center py-10 text-red-500">{error}</div>;
+  if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
   if (!product) return null;
-
-  const mobileSliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
 const handleOpen = () => {
   navigate("/cart");
 };
+
+
+
+const sliderSettings = {
+  dots: false,
+  infinite: true,
+  arrows: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    { breakpoint: 1024, settings: { slidesToShow: 3 } },
+    { breakpoint: 768, settings: { slidesToShow: 2 } },
+    {
+      breakpoint: 640,
+      settings: {
+        slidesToShow: 2,    // horizontal cards per slide
+        slidesPerRow: 2,    // number of cards per row
+        rows: 2,            // 2 rows → 4 cards visible
+      },
+    },
+  ],
+};
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -68,7 +88,7 @@ const handleOpen = () => {
             {product.images?.map((img, i) => (
               <div key={i} className="bg-gray-100 rounded-xl overflow-hidden">
                 <img
-                  src={img}
+                  src={img || undefined}
                   alt={product.title}
                   className="w-full h-full object-cover hover:scale-105 transition duration-300"
                   onClick={() => setMainImage(img)}
@@ -80,7 +100,7 @@ const handleOpen = () => {
           {/* Mobile view: slider */}
           <div className="md:hidden">
             <img
-              src={mainImage}
+              src={mainImage || undefined}
               alt={product.title}
               className="w-full h-[300px] object-cover rounded-xl mb-2"
             />
@@ -88,7 +108,7 @@ const handleOpen = () => {
               {product.images?.map((img, i) => (
                 <img
                   key={i}
-                  src={img}
+                  src={img || undefined}
                   alt={`thumb-${i}`}
                   className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${
                     mainImage === img ? "border-black" : "border-gray-200"
@@ -151,19 +171,6 @@ const handleOpen = () => {
           </div>
 
           {/* Buttons */}
-          {/* <div className="flex gap-2 mt-6 flex-wrap">
-            <button className="flex-1 bg-black text-white py-3 rounded-lg hover:opacity-90">
-              Add to Cart
-            </button>
-            <button className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:opacity-90">
-              Buy Now
-            </button>
-            <div className="bg-black text-white py-3 rounded-lg px-4 cursor-pointer hover:opacity-90">
-              <CiHeart size={20} />
-            </div>
-          </div> */}
-
-          {/* Buttons */}
           <div className=" flex flex-col not-first-of-type:mt-8 ">
             <div className="flex gap-2 py-2">
                 
@@ -192,10 +199,26 @@ const handleOpen = () => {
 
       {/* YOU MAY ALSO LIKE */}
       <div className="mt-16">
-        <h2 className="text-[24px] md:text-[48px] font-bold mb-6">
-          You may also like
-        </h2>
-        <ProductsCard />
+        <div className="flex justify-between mt-8">
+                    <h2 className="text-[24px] md:text-[48px] font-bold mb-6">
+                      You may also like
+                    </h2>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => sliderRef.current?.slickPrev()}
+                        className="bg-white hover:bg-[#b1b1ac] hover:text-white text-black w-8 h-8 rounded-lg flex items-center justify-center"
+                      >
+                        <IoIosArrowBack size={15} />
+                      </button>
+                      <button
+                        onClick={() => sliderRef.current?.slickNext()}
+                        className="bg-white text-black hover:bg-[#b1b1ac] hover:text-white w-8 h-8 rounded-lg flex items-center justify-center"
+                      >
+                        <IoIosArrowForward size={15} />
+                      </button>
+                    </div>
+                  </div>
+       <ProductsCard ref={sliderRef} sliderSettings={sliderSettings} />
       </div>
     </div>
   );

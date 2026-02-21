@@ -110,6 +110,9 @@ const Contact = () => {
 </div>
 
       </div>
+      <div className="pt-8 w-full flex justify-center items-center">
+        <p>© All rights reserved </p>
+      </div>
     </div>
   );
 };
